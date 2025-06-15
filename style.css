@@ -718,3 +718,30 @@ body::before {
     padding: 15px;
   }
 }
+/* === POPRAWKI: Stopka i brak przesuwania === */
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.intro-banner {
+  width: 100%;
+}
+
+.parallax-banner {
+  width: 100%;
+}
+
+* {
+  max-width: 100vw;
+}
