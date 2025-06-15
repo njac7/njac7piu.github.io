@@ -112,7 +112,6 @@ header {
   width: 100%;
 }
 
-/* INTRO */
 .intro {
   opacity: 0;
   transform: translateY(20px);
@@ -130,7 +129,6 @@ header {
   margin: 0 auto;
 }
 
-/* FOOTER */
 footer {
   background-color: rgba(255, 255, 255, 0.05);
   text-align: center;
@@ -142,7 +140,6 @@ footer {
   flex-shrink: 0;
 }
 
-/* ANIMACJE */
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -150,7 +147,6 @@ footer {
   }
 }
 
-/* PARALLAX */
 .parallax-banner {
   background-image: url('https://images.unsplash.com/photo-1542204165-65bf26472b9b');
   height: 300px;
@@ -167,7 +163,6 @@ footer {
   text-shadow: 0 0 10px #000;
 }
 
-/* INTRO BANNER */
 .intro-banner {
   width: 100vw;
   height: 400px;
@@ -206,7 +201,6 @@ footer {
   margin: 0 auto;
 }
 
-/* NEWS SECTION + OBRAZKI */
 .news-section {
   display: flex;
   flex-wrap: wrap;
@@ -262,7 +256,6 @@ footer {
   color: #aaa;
 }
 
-/* TŁO GWIAZD */
 body::before {
   content: "";
   position: absolute;
@@ -281,7 +274,7 @@ body::before {
   0% { transform: translate(0, 0); }
   100% { transform: translate(50%, 50%); }
 }
-/* NEWS CARD – POZIOMY UKŁAD (tekst + obrazek) */
+
 .news-card-horizontal {
   display: flex;
   flex-direction: row;
@@ -293,7 +286,7 @@ body::before {
   width: 100%;
   box-shadow: 0 0 15px rgba(255,85,85,0.1);
   transition: transform 0.3s ease;
-  margin: 0 auto 30px auto;  /* <–– tu magia */
+  margin: 0 auto 30px auto;
   margin-top: 10px;
 }
 
@@ -331,7 +324,7 @@ body::before {
   font-size: 14px;
   color: #aaa;
 }
-/* FILMY */
+
 .film-controls {
   max-width: 1200px;
   margin: 0 auto 20px;
@@ -615,7 +608,7 @@ body::before {
     display: flex;
   }
 }
-/* TABLET */
+
 @media (max-width: 1023px) {
   .film-container {
     flex-direction: column;
@@ -645,7 +638,6 @@ body::before {
   }
 }
 
-/* MOBILE */
 @media (max-width: 767px) {
   .gallery-grid {
     grid-template-columns: 1fr;
@@ -725,7 +717,7 @@ body::before {
     padding: 15px;
   }
 }
-/* === POPRAWKI: Stopka i brak przesuwania === */
+
 html, body {
   height: 100%;
   overflow-x: hidden;
@@ -777,7 +769,6 @@ main {
   flex: 1 0 auto;
 }
 
-/* Poprawione body::before – NIE ROZCIĄGA STRONY */
 body::before {
   content: "";
   position: fixed;
@@ -807,5 +798,5 @@ body::before {
 }
 
 .news-card-horizontal.active .news-body {
-  max-height: 500px; /* lub więcej jeśli potrzebujesz */
+  max-height: 500px;
 }
