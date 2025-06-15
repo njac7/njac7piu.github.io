@@ -54,16 +54,13 @@
         contactForm.addEventListener("submit", function (e) {
           e.preventDefault();
   
-          // pokaż wiadomość
           formMessage.textContent = "✅ Wiadomość została wysłana!";
           formMessage.classList.add("visible");
   
-          // schowaj po 3 sekundach
           setTimeout(() => {
             formMessage.classList.remove("visible");
           }, 3000);
-  
-          // wyczyść formularz
+
           contactForm.reset();
         });
       }
