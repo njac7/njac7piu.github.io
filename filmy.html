@@ -51,7 +51,6 @@
 
     <section class="film-container">
       <div class="film-list" id="film-list">
-        <!-- Karty filmów będą dodane przez JS -->
       </div>
 
       <div class="film-details" id="film-details">
@@ -185,7 +184,6 @@
         filmList.appendChild(card);
       });
 
-      // domyślnie pokazujemy pierwszy film
       if (currentFilms.length > 0) {
         filmDetails.innerHTML = `
           <h2>${currentFilms[0].title}</h2>
