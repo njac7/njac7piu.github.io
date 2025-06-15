@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinemini – Nowości</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    @media (max-width: 767px) {
+      .news-text p,
+      .news-text .date {
+        display: none;
+      }
+
+      .news-card-horizontal.active .news-text p,
+      .news-card-horizontal.active .news-text .date {
+        display: block;
+      }
+
+      .news-text h3 {
+        cursor: pointer;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="Galeria/logo.png" alt="Cinemini logo" />
+    </div> 
+    <div id="burger-toggle" class="burger">&#9776;</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="nowosci.html">Nowości</a></li>
+        <li><a href="filmy.html">Filmy</a></li>
+        <li><a href="seriale.html">Seriale</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="wpisy.html">Forum</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="parallax-banner">
+    <h2>Nowości filmowe</h2>
+  </section>
+
+  <article class="news-card-horizontal fade-in-section">
+    <div class="news-text">
+      <h3 class="news-title">Box Office Świat: "Minecraft: Film" nie daje szans konkurencji</h3>
+      <p>Choć na rynku nie brakuje nowości, pozycja lidera nie uległa zmianie. „Minecraft: Film” wciąż rządzi i dzieli, bez większego wysiłku utrzymując pierwsze miejsce z wynikiem 37,8 miliona dolarów.</p>
+      <span class="date">28 kwietnia 2025</span>
+    </div>
+    <img src="Galeria/news1.jpg" alt="Miniatura artykułu">
+  </article>
+
+  <article class="news-card-horizontal fade-in-section">
+    <div class="news-text">
+      <h3 class="news-title">Michael Keaton w jednym filmie z Robertem De Niro!</h3>
+      <p>Po 28 latach Michael Keaton znów zagra w jednym filmie z Robertem De Niro. Panowie byli w obsadzie "Jackie Brown", a teraz spotkają się przy okazji filmu "The Whisper Man".</p>
+      <span class="date">17 kwietnia 2025</span>
+    </div>
+    <img src="Galeria/news2.jpg" alt="Miniatura artykułu">
+  </article>
+
+  <article class="news-card-horizontal fade-in-section">
+    <div class="news-text">
+      <h3 class="news-title">Nowy "Spider-Man" z oficjalnym tytułem</h3>
+      <p>Tom Holland pojawił się w klipie wideo przygotowanym specjalnie na CinemaCon. Ujawnił w nim, że nowe widowisko będzie nosić tytuł "Spider-Man: Brand New Day".</p>
+      <span class="date">1 kwietnia 2025</span>
+    </div>
+    <img src="Galeria/news3.jpg" alt="Miniatura artykułu">
+  </article>
+
+  <footer>
+    <p>&copy; 2025 Cinemini. Wszelkie prawa zastrzeżone.</p>
+  </footer>
+
+  <script src="burger.js"></script>
+  <script>
+    // Obsługa rozwijania newsów na mobile
+    document.addEventListener("DOMContentLoaded", function () {
+      const titles = document.querySelectorAll(".news-title");
+
+      titles.forEach(title => {
+        title.addEventListener("click", () => {
+          const card = title.closest(".news-card-horizontal");
+          card.classList.toggle("active");
+        });
+      });
+    });
+  </script>
+</body>
+</html>

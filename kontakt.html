@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cinemini – Kontakt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="Galeria/logo.png" alt="Cinemini logo" />
+      </div> 
+    <div id="burger-toggle" class="burger">&#9776;</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="nowosci.html">Nowości</a></li>
+        <li><a href="filmy.html">Filmy</a></li>
+        <li><a href="seriale.html">Seriale</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="wpisy.html">Forum</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h1 class="section-title">Kontakt</h1>
+      
+    <section class="contact-section">
+      <form class="contact-form" id="contactForm">
+        <input type="text" name="imie" placeholder="Imię" required />
+        <input type="text" name="nazwisko" placeholder="Nazwisko" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <textarea name="wiadomosc" placeholder="Wiadomość" rows="5" required></textarea>
+        <button type="submit">Skontaktuj się z nami!</button>
+        <div id="formMessage" class="form-message"></div>
+
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Cinemini. Wszelkie prawa zastrzeżone.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const contactForm = document.getElementById("contactForm");
+      const formMessage = document.getElementById("formMessage");
+  
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+  
+          // pokaż wiadomość
+          formMessage.textContent = "✅ Wiadomość została wysłana!";
+          formMessage.classList.add("visible");
+  
+          // schowaj po 3 sekundach
+          setTimeout(() => {
+            formMessage.classList.remove("visible");
+          }, 3000);
+  
+          // wyczyść formularz
+          contactForm.reset();
+        });
+      }
+    });
+  </script>
+  <script src="burger.js"></script>
+
+</body>
+</html>

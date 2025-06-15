@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cinemini – Filmy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="Galeria/logo.png" alt="Cinemini logo" />
+      </div>
+      
+    <div id="burger-toggle" class="burger">&#9776;</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="nowosci.html">Nowości</a></li>
+        <li><a href="filmy.html">Filmy</a></li>
+        <li><a href="seriale.html">Seriale</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="wpisy.html">Forum</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="section-title">Filmy</h1>
+    <div class="film-controls">
+      <select id="sort-select">
+        <option value="">Sortuj według...</option>
+        <option value="year-desc">Rok premiery (najnowsze)</option>
+        <option value="year-asc">Rok premiery (najstarsze)</option>
+        <option value="rating-desc">Ocena (malejąco)</option>
+        <option value="rating-asc">Ocena (rosnąco)</option>
+      </select>
+
+      <select id="genre-filter">
+        <option value="">Filtruj według gatunku</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Gangsterski">Gangsterski</option>
+        <option value="Komedia">Komedia</option>
+        <option value="Western">Western</option>
+        <option value="Sensacyjny">Sensacyjny</option>
+        <option value="Horror">Horror</option>
+        <option value="Akcja">Akcja</option>
+      </select>
+    </div>
+
+    <section class="film-container">
+      <div class="film-list" id="film-list">
+        <!-- Karty filmów będą dodane przez JS -->
+      </div>
+
+      <div class="film-details" id="film-details">
+        <h2>Wybierz film</h2>
+        <p>Po lewej wybierz film, aby zobaczyć jego opis.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Cinemini. Wszelkie prawa zastrzeżone.</p>
+  </footer>
+
+  <script>
+    const films = [
+      {
+        title: "To nie jest kraj dla starych ludzi",
+        year: 2007,
+        rating: 7.6,
+        genre: "Thriller",
+        img: "Galeria/kraj.jpg",
+        description: "Mroczny thriller braci Coen (Ethana i Joela), rozwijający się w prawdziwy dramat egzystencjalny - na 8 nominacji do Oskara (4 statuetki, w tym za najlepszy film i reżyserię). Pewien myśliwy (Josh Brolin) natrafia niedaleko granicy z Meksykiem na przedziwne znalezisko: paczki heroiny, 2 miliony dolarów i kilka ciał. Niewiele myśląc, zabiera pieniądze, co sprowadza mu na głowę prawdziwe kłopoty, z szalonym płatnym mordercą (nagrodzony Złotym Globem i Oscarem Javier Bardem) na czele. Zabójca nie będzie miał jednak łatwego zadania - przypadkowy złodziej służył bowiem w wojsku i doskonale potrafi zacierać swe ślady..."
+      },
+      {
+        title: "Człowiek z blizną",
+        year: 1983,
+        rating: 8.2,
+        genre: "Gangsterski",
+        img: "Galeria/scar.jpg",
+        description: "W 1980 roku rząd Fidela Castro, podczas akcji łączenia rodzin, pozbył się przy okazji dwudziestu pięciu tysięcy kryminalistów, których przymusowo deportowano do Stanów Zjednoczonych. Jednym z nich był Anthony Tony Montana (Al Pacino), zwany Caracortada, który ma wytatuowany na ręce znak, oznaczający w przestępczym kodzie mordercę. Tony i jego kumpel Manolo Ray (Steven Bauer), przenoszą się do Miami. Kartę stałego pobytu otrzymują w zamian za przysługę oddaną gangowi handlarzy narkotykami. Frank Lopez (Robert Loggia), jeden z wielkich szefów, włącza go do grupy najbliższych współpracowników i wprowadza w światowe życie. Wkrótce Montana zazdrości mu pozycji, klasy, majątku oraz pięknej kobiety, Elviry (Michelle Pfeiffer) i chce zająć jego miejsce."
+      },
+      {
+        title: "Leon Zawodowiec",
+        year: 1994,
+        rating: 8.1,
+        genre: "Kryminalny",
+        img: "Galeria/leon.jpg",
+        description: "Leon (Jean Reno) jest płatnym zabójcą. W niczym nie przypomina męskiego, twardego i nieposkromionego złoczyńcy. Wręcz przeciwnie: jest cichy, spokojny, na co dzień pije mleko. Pewnego dnia skorumpowana policja zabija swojego dostawcę narkotyków i jego rodzinę. Przeżyła tylko córka, która postanawia zemścić się na zabójcach. To niezwykle trudne zlecenie otrzymuje Leon, u którego młoda dziewczyna znajduje schronienie."
+      },
+      {
+        title:"Taxi",
+        year: 1998,
+        rating: 7.1,
+        genre: "Komedia",
+        img: "Galeria/taxi.jpg",
+        description:"Daniel (Samy Naceri), najlepszy dostawca pizzy w mieście, zmienia pracę i zaczyna jako taksówkarz jeżdżący tuningowanym Peugeotem 406. Niestety, przez swoją miłość do bardzo szybkiej jazdy zostaje w końcu złapany. Jeden z jego pasażerów okazuje się być policjantem. Jest to Emilien (Frédéric Diefenthal), który ma dwa wielkie zmartwienia. Pierwsze to to, że każdy jego egzamin na prawo jazdy zawsze kończy się wjechaniem w jakiś sklep, a drugie to takie, że musi złapać gang Mercedesów - niemieckich złodziei okradających banki. Emilien daruje Danielowi karę, jeśli tamten obiecuje pomóc policji..."
+       },
+       {
+        title:"Pulp Fiction",
+        year: 1994,
+        rating: 8.3,
+        genre: "Gangsterski",
+        img: "Galeria/pulp.jpg",
+        description:"Płatni mordercy, Jules (Samuel L. Jackson) i Vincent (John Travolta), dostają zlecenie, by odzyskać z rąk przypadkowych rabusiów tajemniczą walizkę bossa mafii. Nie dość tego, Vincent dostaje kolejną robotę - na czas nieobecności gangstera w mieście ma zaopiekować się jego poszukującą wrażeń żoną Mią (Uma Thurman). Vincent i Jules niespodziewanie wpadają po uszy, gdy przypadkowo zabijają zakładnika. Kłopoty ma też podupadły bokser (Bruce Willis), który otrzymał dużą sumę za przegranie swojej walki. Walkę jednak wygrywa, a Los Angeles staje się od tej chwili dla niego za małe. Specjaliści od mokrej roboty będą mieli co robić..."
+       },
+       {
+        title:"Supersamiec",
+        year: 2007,
+        rating: 6.4,
+        genre: "Komedia",
+        img: "Galeria/super.jpg",
+        description:"Właśnie kończy się ostatnia klasa liceum. Dwaj nierozłączni przyjaciele Evan i Seth szukają sposobu, żeby dostać się na jakąś imprezę. Nieoczekiwanie zaprasza ich Jules, koleżanka z klasy w której Seth podkochuje się w tajemnicy. Dwóm przyjaciołom zostaje powierzona misja zdobycia alkoholu. By tego dokonać Seth i Evan zwracają się z prośbą do Fogella, który właśnie odebrał fałszywy dowód osobisty."
+       },
+       {
+        title:"Nienawistna ósemka",
+        year: 2015,
+        rating: 7.7,
+        genre: "Western",
+        img: "Galeria/8.jpg",
+        description:"Kilka lat po wojnie secesyjnej przez wietrzne pustkowia Wyoming podróżują łowca nagród John Ruth (Kurt Russell), znany jako Szubienica, oraz zbiegła przestępczyni Daisy Domergue (Jennifer Jason Leigh). Ruth ma zamiar doprowadzić kobietę przed oblicze sprawiedliwości. Podczas podróży spotykają innego okrytego złą sławą łowcę nagród majora Marquisa Warrena (Samuel L. Jackson), niegdyś żołnierza walczącego po stronie Unii, oraz Chrisa Mannixa (Walton Goggins), renegata z Południa i samozwańczego szeryfa miasta Red Rock, do którego zmierzają. Podróżni zbaczają jednak ze szlaku podczas zamieci śnieżnej. Schronienie znajdują w zajeździe na górskiej przełęczy, gdzie zostają powitani przez czterech nieznajomych: Boba (Demian Bichir) opiekującego się lokalem, kata z Red Rock Oswaldo Mobraya (Tim Roth), kowboja Joego Gage'a (Michael Madsen) i byłego konfederackiego generała Sanforda Smithersa (Bruce Dern). Gdy gwałtowna nawałnica uderza w górski przyczółek, ósemka podróżników zaczyna rozumieć, że szanse dotarcia do Red Rock są bardzo małe."
+       },
+       {
+        title:"Transformers 3",
+        year: 2011,
+        rating: 6.9,
+        genre: "Akcja",
+        img: "Galeria/tran3.jpg",
+        description:"Shia LaBeouf powraca jako Sam Witwicky w filmie Transformers 3! Przeszłość kryję tajemnice, a wydarzenia sprzed lat mają wpływy na to, co się dzieje teraz. Być może wrak statku kosmicznego znaleziony na Księżycu przyczyni się do tego, że Ziemia stanie na krawędzi wojny. Wojny tak wielkiej, że siła Transformersów będzie zbyt mała, by nas ocalić. Autoboty kontra Decepticony, dobro przeciw złu. I wcale nie jest powiedziane, że dobro zwycięży. Do ekipy znanej z poprzednich części Transformesów dołączyły nowe gwiazdy: John Malkovich, Patrick Dempsey oraz Frances McDormand. "
+       },
+       {
+        title:"Gorączka",
+        year: 1995,
+        rating: 8.5,
+        genre: "Sensacyjny",
+        img: "Galeria/heat.jpg",
+        description:"Neil McCauley (Robert De Niro) jest poszukiwanym przez policję, brutalnym i bezwzględnym złodziejem. Wraz ze swymi kumplami - Chrisem (Val Kilmer) i Michaelem (Tom Sizemore) organizuje zbrojny napad na opancerzoną furgonetkę, przewożącą obligacje. Wszystko przebiega bez zarzutu, dopóki Waingro, jeden z nowicjuszy uczestniczący w akcji, nie wytrzymuje napięcia i niespodziewanie wypala z broni. W strzelaninie ginie trzech strażników. Do akcji wkracza Vincent Hanna (Al Pacino), zasłużony policjant z wydziału zabójstw, od wielu lat ofiarnie walczący z przestępczością w Los Angeles. Po przybyciu na miejsce zbrodni, Hanna szczegółowo odtwarza przebieg tragedii, trafiając wkrótce na trop przestępców. Tymczasem McCauley przygotowuje ostatni wielki skok na bank, po którym zamierza przejść na emeryturę i wyjechać do Nowej Zelandii. Vincent Hanna natomiast za wszelką cenę postanawia go schwytać i dopełnić sprawiedliwości..."
+       },
+       {
+        title:"Armia ciemności",
+        year: 1992,
+        rating: 7.2,
+        genre: "Horror",
+        img: "Galeria/army.jpg",
+        description:"Ash, który został wciągnięty przez wir czasowy, zostaje przeniesiony do średniowiecznej Anglii. Aby powrócić do współczesności musi odnaleźć Necronomicon i wypowiedzieć zaklęcie. Jednak w czasie poszukiwań Ash budzi niechcący do życia armię ciemności, której będzie musiał stawić czoło ..."
+       }
+    ];
+
+    const filmList = document.getElementById("film-list");
+    const filmDetails = document.getElementById("film-details");
+    const sortSelect = document.getElementById("sort-select");
+    const genreFilter = document.getElementById("genre-filter");
+
+    let currentFilms = [...films];
+
+    function renderFilms() {
+      filmList.innerHTML = "";
+      currentFilms.forEach((film, index) => {
+        const card = document.createElement("div");
+        card.classList.add("film-card");
+        if (index === 0) card.classList.add("active");
+
+        card.innerHTML = `
+          <img src="${film.img}" alt="${film.title}" />
+          <div class="info">
+            <h4>${film.title}</h4>
+            <span>Ocena: ${film.rating}</span>
+            <span>${film.year}</span>
+            <span>${film.genre}</span>
+          </div>
+        `;
+
+        card.addEventListener("click", () => {
+          document.querySelectorAll(".film-card").forEach(c => c.classList.remove("active"));
+          card.classList.add("active");
+          filmDetails.innerHTML = `
+            <h2>${film.title}</h2>
+            <p>${film.description}</p>
+          `;
+        });
+
+        filmList.appendChild(card);
+      });
+
+      // domyślnie pokazujemy pierwszy film
+      if (currentFilms.length > 0) {
+        filmDetails.innerHTML = `
+          <h2>${currentFilms[0].title}</h2>
+          <p>${currentFilms[0].description}</p>
+        `;
+      } else {
+        filmDetails.innerHTML = `
+          <h2>Brak wyników</h2>
+          <p>Nie znaleziono filmów pasujących do wybranych kryteriów.</p>
+        `;
+      }
+    }
+
+    sortSelect.addEventListener("change", () => {
+      const value = sortSelect.value;
+      if (value === "year-desc") {
+        currentFilms.sort((a, b) => b.year - a.year);
+      } else if (value === "year-asc") {
+        currentFilms.sort((a, b) => a.year - b.year);
+      } else if (value === "rating-desc") {
+        currentFilms.sort((a, b) => b.rating - a.rating);
+      } else if (value === "rating-asc") {
+        currentFilms.sort((a, b) => a.rating - b.rating);
+      }
+      renderFilms();
+    });
+
+    genreFilter.addEventListener("change", () => {
+      const genre = genreFilter.value;
+      currentFilms = genre ? films.filter(f => f.genre === genre) : [...films];
+      renderFilms();
+    });
+
+    renderFilms();
+  </script>
+  <script src="burger.js"></script>
+</body>
+</html>

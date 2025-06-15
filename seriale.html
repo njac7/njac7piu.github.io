@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cinemini – Seriale</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="Galeria/logo.png" alt="Cinemini logo" />
+      </div> 
+    <div id="burger-toggle" class="burger">&#9776;</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="nowosci.html">Nowości</a></li>
+        <li><a href="filmy.html">Filmy</a></li>
+        <li><a href="seriale.html">Seriale</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="wpisy.html">Forum</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="section-title">Seriale</h1>
+
+    <div class="film-controls">
+      <select id="sort-select">
+        <option value="">Sortuj według...</option>
+        <option value="year-desc">Rok premiery (najnowsze)</option>
+        <option value="year-asc">Rok premiery (najstarsze)</option>
+        <option value="rating-desc">Ocena (malejąco)</option>
+        <option value="rating-asc">Ocena (rosnąco)</option>
+      </select>
+
+      <select id="genre-filter">
+        <option value="">Filtruj według gatunku</option>
+        <option value="Dramat">Dramat</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Kryminalny">Kryminalny</option>
+        <option value="Sportowy">Sportowy</option>
+        <option value="Akcja">Akcja</option>
+        <option value="Komedia">Komedia</option>
+        <option value="Biograficzny">Biograficzny</option>
+      </select>
+    </div>
+
+    <section class="film-container">
+      <div class="film-list" id="film-list">
+        <!-- Karty seriali dodane przez JS -->
+      </div>
+
+      <div class="film-details" id="film-details">
+        <h2>Wybierz serial</h2>
+        <p>Po lewej wybierz serial, aby zobaczyć jego opis.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Cinemini. Wszelkie prawa zastrzeżone.</p>
+  </footer>
+
+  <script>
+    const series = [
+      {
+        title: "Breaking bad",
+        year: 2008,
+        rating: 8.8,
+        seasons: 5,
+        genre: "Kryminalny",
+        img: "Galeria/brba.jpg",
+        description: "Głównym bohaterem Breaking Bad jest Walter White (Bryan Cranston), nauczyciel chemii mieszkający w Nowym Meksyku wraz z żoną (Anna Gunn) oraz nastoletnim synem (RJ Mitte) cierpiącym na porażenie mózgowe. Kiedy u Waltera zostaje zdiagnozowany rak w trzecim stadium, lekarze rokują, że pozostały mu dwa lata życia. Dzięki tym prognozom Walter wyzbywa się wszelkich lęków i pragnąc zabezpieczyć swoją rodzinę finansowo decyduje się wkroczyć do niebezpiecznego świata narkotyków i zbrodni. Serial ukazuje jak śmiertelna diagnoza jaką postawiono White'owi, zwyczajnemu mężczyźnie z typowymi, codziennymi problemami zmienia go z łagodnego domatora w trzon narkotykowej branży."
+      },
+      {
+        title: "Prison Break",
+        year: 2005,
+        rating: 7.6,
+        seasons: 4,
+        genre: "Thriller",
+        img: "Galeria/prbr.jpg",
+        description: "Bohaterem serialu jest Michael Scofield (Wentworth Miller) - młody, niezwykle utalentowany inżynier, którego brat Lincoln Burrows (Dominic Purcell) został skazany na karę śmierci. Do wykonania wyroku w więzieniu stanowym Fox River pozostało już tylko trzy tygodnie. Scolfield (Wentworth Miller) przekonany o jego niewinności podejmuje brawurową próbę ratowania jego życia. Większość mężczyzn zrobiłoby wszystko, by uwolnić się zza krat, on odrzuca wszystko, przekreśla błyskotliwą karierę i pozorując napad na bank dostaje się do tego samego więzienia, by od środka przygotować wielką ucieczkę. Nikt nie wie, że Michael (Wentworth Miller) projektował Fox River i wchodzi do niego z wytatuowanym na ciele schematem pod postacią nic nie znaczącej grafiki. Od pierwszej chwili wprowadza w czyn idealnie precyzyjny plan działania. Każdy kolejny odcinek tego serialu odsłania następne elementy bezbłędnej układanki. Krok po kroku odkrywamy geniusz Michaela (Wentworth Miller). Ale czy on i jego brat przetrwają w więziennej rzeczywistości, by móc"
+      },
+      {
+        title: "JoJo's Bizarre Adventure",
+        year: 2012,
+        rating: 7.7,
+        seasons: 5,
+        genre: "Akcja",
+        img: "Galeria/jojo.jpg",
+        description: "Opowieść zaczyna się w dziewiętnastowiecznej Anglii. Młody arystokrata Jonathan Joestar znajduje się w zaciekłej rywalizacji z Dio Brando, nisko urodzonym chłopakiem, którego ojciec Jonathana przygarnął po śmierci ojca Dio. Niezadowolenie z pozycji życiowej i bezkresne pożądanie władzy ponad wszystko inne, ostatecznie doprowadza młodego Brando do odkrycia mocy azteckiej starożytnej kamiennej maski w posiadłości Joestarów – artefaktu, który na zawsze zmieni przeznaczenie Dio, Jonathana i przyszłych pokoleń. Pięćdziesiąt lat później w 1938 w Nowym Yorku wnuk Jonathana, Joseph Joestar, musi przejąć misję swojego dziadka i opanować umiejętności niezbędne do zniszczenia kamiennej maski i jej niezwykle potężnych twórców, którzy zagrażają istnieniu ludzkości, Ludzi z Filaru"
+      },
+      {
+        title: "Lakers: Dynastia Zwycięzców",
+        year: 2022,
+        rating: 8.2,
+        seasons: 2,
+        genre: "Sportowy",
+        img: "Galeria/lake.jpg",
+        description: "Serial jest zapisem zawodowych i prywatnych sukcesów zawodników drużyny Los Angeles Lakers, którzy w latach 80. stworzyli jedną z najbardziej podziwianych i świętujących triumfy dynastii - drużyny, która stała się legendą na boisku i poza nim. Serial HBO zabiera widzów w podróż czasie, żeby przedstawić im zawodowe sukcesy i kulisy prywatnego życia zawodników drużyny Los Angeles Lakers, którzy w latach 80. stworzyli jeden z najbardziej podziwianych i odnoszących wielkie sukcesy zespołów. Produkcja, która jest adaptacją powieści Jeffa Pearlmana pt. Showtime: Magic, Kareem, Riley, and the Los Angeles Lakers Dynasty of the 1980s, przedstawia historię drużyny, której zawodnicy dokonywali niezwykłych rzeczy na boisku i poza nim."
+      },
+      {
+        title: "Czarnobyl",
+        year: 2019,
+        rating: 8.8,
+        seasons: 1,
+        genre: "Dramat",
+        img: "Galeria/czar.jpg",
+        description: "26 kwietnia 1986 roku w elektrowni jądrowej w Czarnobylu na Ukrainie, na terenie ówczesnego ZSRR, doszło do ogromnej eksplozji. Uwolniona podczas wybuchu chmura radioaktywna spowodowała skażenie promieniotwórcze na terenie Białorusi, Rosji, Ukrainy i rozprzestrzeniła się po całej Europie, w tym w Polsce, Skandynawii, Europie Środkowej i Zachodniej. Miniserial śledzi losy kilku postaci. Jared Harris wciela się w Walerija Legasowa, wiodącego radzieckiego fizyka jądrowego, który był członkiem komisji badającej przyczyny awarii i jako pierwszy zrozumiał skalę katastrofy. Stellan Skarsgård gra zastępcę przewodniczącego Rady Ministrów ZSRR Borysa Szczerbinę, który z kremlowskiego nadania przewodniczył pracom rządowej komisji ds. Czarnobyla w pierwszych godzinach po awarii. Emily Watson zobaczymy w roli Ulany Khomyuk, radzieckiej fizyczki jądrowej, która chce poznać prawdziwe przyczyny wybuchu reaktora. Składający z pięciu odcinków miniserial opowiadający o największej w historii awarii reaktora atomowego, która miała miejsce 1986 roku na terenie należącej wówczas do Związku Radzieckiego Ukrainie."
+      },
+      {
+        title: "Narcos",
+        year: 2015,
+        rating: 8.4,
+        seasons: 3,
+        genre: "Biograficzny",
+        img: "Galeria/narc.jpg",
+        description: "Pablo Escobar (Wagner Moura) jest potężnym bossem kartelu narkotykowego z Medelin w Kolumbii. Jego działalność związana z handlem kokainą rozrasta się. Władze federalne USA stawiają sobie za cel zlikwidować nielegalną działalność Escobara."
+      },
+      {
+        title: "Better Call Saul",
+        year: 2015,
+        rating: 8.4,
+        seasons: 6,
+        genre: "Dramat",
+        img: "Galeria/bcs.jpg",
+        description: "Serial rozgrywa się w przeciągu sześciu lat poprzedzających wydarzenia Breaking Bad i opowiada historię Jimmy’ego McGilla (Bob Odenkirk) alias Saul Goodman. Produkcja obfituje w humorystyczne sytuacje wynikające ze specyficznego podejścia Jimmy’ego do współżycia z otoczeniem, praktykowania prawa, mówienia prawdy oraz wyrażania tego co myśli. Jimmy’ego poznajemy jako zmagającego się z przeciwnościami losu i brakiem pieniędzy obrońcę z urzędu, a następnie samodzielnego prawnika prowadzącego sprawy osób starszych. Chcąc pomóc przyjaciółce, Kim Wexler (Rhea Seehorn), doprowadza on do eskalacji konfliktu ze swoim bratem Chuckiem (Michael McKean), w wyniku czego na rok zostaje wykluczony z izby adwokackiej. Gdy nie może prowadzić praktyki wpada na pomysł sprzedaży telefonów pre-paid osobom potrzebującym prywatności. Tu styka się ze środowiskiem przestępców i handlarzy narkotyków. Po odzyskaniu licencji pragnie wykorzystać nawiązane w ten sposób kontakty i postawia dalej praktykować prawo. W tym czasie jego losy krzyżują się z życiem innych postaci z serialu Breaking Bad, takich jak Gus Fring (Giancarlo Esposito), Mike Ehrmantraut (Jonathan Banks) czy Hector Salamanca (Mark Margolis). Poznajemy również m.in. historię powstania laboratorium pod pralnią przemysłową Gusa Finga."
+      },
+      {
+        title: "Chłopaki z Baraków",
+        year: 2001,
+        rating: 8.4,
+        seasons: 12,
+        genre: "Komedia",
+        img: "Galeria/tpb.jpg",
+        description: "Chłopaki Z Baraków - kanadyjski serial reżyserii Mikea Clattenburga. Serial opowiada o przygodach grupy przyjaciół, tytułowych chłopaków - mieszkających na osiedlu barakowozów Sunnyvale. Ich celem na życie jest szybkie wzbogacenie się. Chłopaki dążąc do jego realizacji notorycznie popadają w konflikt z prawem za handel narkotykami, liczne rozboje czy kradzieże. Fakt, że w końcu trafiają za kratki nie zniechęca ich do snucia nowych planów zdobywania upragnionego bogactwa."
+      },
+      {
+        title: "Dexter",
+        year: 2006,
+        rating: 8.2,
+        seasons: 8,
+        genre: "Kryminalny",
+        img: "Galeria/dex.jpg",
+        description: "Dexter jest seryjnym mordercą. W dzieciństwie został przygarnięty przez policjanta, Harry'ego, który nauczył go zaspokajać swoje chore pragnienia, będące wynikiem traumatycznych przeżyć. Dexter, posługując się kodeksem przybranego ojca, zabija ludzi, którzy sobie (w jego mniemaniu) na to zasłużyli, a jednocześnie swojemu głodowi zabijania mówi stanowcze nie! Od czasu śmierci Harry'ego nie ma nikogo, kto znałby mroczną prawdę o Dexterze. Nie wie o tym nawet jego przybrana siostra Deb, pracująca w tym samym oddziale policji Miami. Pewnego dnia w sielankowe życie bohatera wkrada się ktoś, kto wyrywa Dextera z rutyny - morderca z ciężarówki-chłodni. Okalecza swe ofiary w niezwykle oryginalny i wyjątkowy sposób, co imponuje Dexterowi. Okazuje się, że obaj panowie mają ze sobą więcej wspólnego, niż się wydaje..."
+      },
+      {
+        title: "The Boys",
+        year: 2019,
+        rating: 8.2,
+        seasons: 5,
+        genre: "Sci-Fi",
+        img: "Galeria/boys.jpg",
+        description: "The Boys to nonszalanckie spojrzenie na to, co dzieje się z superbohaterami, gdy stają się równie popularni co celebryci, tak samo wypływowi jak politycy i tak boscy jak bogowie, i gdy nadużywają swych mocy, zamiast wykorzystać je w słusznym celu. Bezsilność stanie przeciwko superpotędze, gdy The Boys wyruszą w bohaterską wyprawę, by ujawnić prawdę o Siódemce wspieranej przez organizację Vought."
+      },
+    ];
+
+    const filmList = document.getElementById("film-list");
+    const filmDetails = document.getElementById("film-details");
+    const sortSelect = document.getElementById("sort-select");
+    const genreFilter = document.getElementById("genre-filter");
+
+    let currentSeries = [...series];
+
+    function renderSeries() {
+      filmList.innerHTML = "";
+      currentSeries.forEach((s, index) => {
+        const card = document.createElement("div");
+        card.classList.add("film-card");
+        if (index === 0) card.classList.add("active");
+
+        card.innerHTML = `
+          <img src="${s.img}" alt="${s.title}" />
+          <div class="info">
+            <h4>${s.title}</h4>
+            <span>Ocena: ${s.rating}</span>
+            <span>${s.year}</span>
+            <span>${s.genre}</span>
+            <span>Sezony: ${s.seasons}</span>
+          </div>
+        `;
+
+        card.addEventListener("click", () => {
+          document.querySelectorAll(".film-card").forEach(c => c.classList.remove("active"));
+          card.classList.add("active");
+          filmDetails.innerHTML = `
+            <h2>${s.title}</h2>
+            <p>${s.description}</p>
+          `;
+        });
+
+        filmList.appendChild(card);
+      });
+
+      if (currentSeries.length > 0) {
+        filmDetails.innerHTML = `
+          <h2>${currentSeries[0].title}</h2>
+          <p>${currentSeries[0].description}</p>
+        `;
+      } else {
+        filmDetails.innerHTML = `
+          <h2>Brak wyników</h2>
+          <p>Nie znaleziono seriali pasujących do wybranych kryteriów.</p>
+        `;
+      }
+    }
+
+    sortSelect.addEventListener("change", () => {
+      const value = sortSelect.value;
+      if (value === "year-desc") {
+        currentSeries.sort((a, b) => b.year - a.year);
+      } else if (value === "year-asc") {
+        currentSeries.sort((a, b) => a.year - b.year);
+      } else if (value === "rating-desc") {
+        currentSeries.sort((a, b) => b.rating - a.rating);
+      } else if (value === "rating-asc") {
+        currentSeries.sort((a, b) => a.rating - b.rating);
+      }
+      renderSeries();
+    });
+
+    genreFilter.addEventListener("change", () => {
+      const genre = genreFilter.value;
+      currentSeries = genre ? series.filter(s => s.genre === genre) : [...series];
+      renderSeries();
+    });
+
+    renderSeries();
+  </script>
+  <script src="burger.js"></script>
+
+</body>
+</html>

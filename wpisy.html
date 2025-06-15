@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cinemini – Forum</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .post-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .post-filter {
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .post-filter input,
+    .post-filter select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: #1f1f1f;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .post-card {
+      background-color: #1f1f1f;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 85, 85, 0.1);
+      text-align: left;
+    }
+
+    .post-card h3 {
+      color: var(--main-red);
+      margin-bottom: 10px;
+    }
+
+    .post-card p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pagination button {
+      background-color: #1f1f1f;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pagination button.active,
+    .pagination button:hover {
+      background-color: var(--main-red);
+    }
+
+    @media (max-width: 600px) {
+      .post-card {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="Galeria/logo.png" alt="Cinemini logo" />
+      </div> 
+    <div id="burger-toggle" class="burger">&#9776;</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="nowosci.html">Nowości</a></li>
+        <li><a href="filmy.html">Filmy</a></li>
+        <li><a href="seriale.html">Seriale</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="wpisy.html">Forum</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="section-title">Forum</h1>
+
+    <section class="post-section">
+      <div class="post-filter">
+        <input type="text" id="searchInput" placeholder="Wyszukaj wpis po tytule..." />
+        <select id="sortSelect">
+          <option value="">Sortuj...</option>
+          <option value="id-asc">ID rosnąco</option>
+          <option value="id-desc">ID malejąco</option>
+        </select>
+        <select id="lengthFilter">
+          <option value="">Filtruj wg długości</option>
+          <option value="short">Krótkie (&lt; 100 znaków)</option>
+          <option value="medium">Średnie (100–200 znaków)</option>
+          <option value="long">Długie (&gt; 200 znaków)</option>
+        </select>
+      </div>
+
+      <div id="postList" class="post-list"></div>
+      <div id="pagination" class="pagination"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Cinemini. Wszelkie prawa zastrzeżone.</p>
+  </footer>
+
+  <script>
+    const postList = document.getElementById("postList");
+    const pagination = document.getElementById("pagination");
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+    const lengthFilter = document.getElementById("lengthFilter");
+
+    const postsPerPage = 5;
+    let currentPage = 1;
+    let allPosts = [];
+
+    function renderPosts(posts) {
+      postList.innerHTML = "";
+
+      const totalPages = Math.ceil(posts.length / postsPerPage);
+      const start = (currentPage - 1) * postsPerPage;
+      const end = start + postsPerPage;
+      const currentPosts = posts.slice(start, end);
+
+      if (currentPosts.length === 0) {
+        postList.innerHTML = "<p>Brak wyników.</p>";
+        pagination.innerHTML = "";
+        return;
+      }
+
+      currentPosts.forEach(post => {
+        const card = document.createElement("div");
+        card.classList.add("post-card");
+        card.innerHTML = `
+          <h3>${post.title}</h3>
+          <p>${post.body}</p>
+        `;
+        postList.appendChild(card);
+      });
+
+      renderPagination(totalPages, posts);
+    }
+
+    function renderPagination(totalPages, filteredPosts) {
+      pagination.innerHTML = "";
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === currentPage) btn.classList.add("active");
+
+        btn.addEventListener("click", () => {
+          currentPage = i;
+          renderPosts(filteredPosts);
+        });
+
+        pagination.appendChild(btn);
+      }
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.toLowerCase();
+      const sort = sortSelect.value;
+      const length = lengthFilter.value;
+
+      let filtered = [...allPosts];
+
+      if (query) {
+        filtered = filtered.filter(post => post.title.toLowerCase().includes(query));
+      }
+
+      if (length) {
+        filtered = filtered.filter(post => {
+          const len = post.body.length;
+          if (length === "short") return len < 100;
+          if (length === "medium") return len >= 100 && len <= 200;
+          if (length === "long") return len > 200;
+          return true;
+        });
+      }
+
+      if (sort === "id-asc") {
+        filtered.sort((a, b) => a.id - b.id);
+      } else if (sort === "id-desc") {
+        filtered.sort((a, b) => b.id - a.id);
+      }
+
+      currentPage = 1;
+      renderPosts(filtered);
+    }
+
+    searchInput.addEventListener("input", applyFilters);
+    sortSelect.addEventListener("change", applyFilters);
+    lengthFilter.addEventListener("change", applyFilters);
+
+    function fetchPosts() {
+      fetch("https://jsonplaceholder.typicode.com/posts")
+        .then(res => res.json())
+        .then(data => {
+          allPosts = data.slice(0, 25); // 25 wpisów
+          renderPosts(allPosts);
+        });
+    }
+
+    fetchPosts();
+  </script>
+  <script src="burger.js"></script>
+
+</body>
+</html>
